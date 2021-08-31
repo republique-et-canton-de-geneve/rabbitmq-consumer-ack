@@ -1,17 +1,21 @@
-## rabbitmq-consumer-ack
+# rabbitmq-consumer-ack
 
+Cette application teste les "Consumer AcknowledgementsPublisher",
+c'est-à-dire les acquittements (ack ou nack) renvoyés par le consommateur des messages à RabbitMQ.
 
+Utilise Spring Boot AMQP.
 
-## FAUX - A FAIRE
-
-Cette application teste les "Publisher Confirms", cad les acquittements de RabbitMQ au producteur des messages.
+## Configuration
 
 Un agent RabbitMQ doit être lancé, avec la configuration suivante :
 - une queue durable "queue1"
 - un échange "exchange1" de type direct
 - dans l'échange "exchange1", un binding sur "queue1", avec la binding key "queue1".
 
-Utilise Spring Boot AMQP.
+## Exécution
 
-Origine :
-[code de Gary Russell](https://github.com/spring-projects/spring-amqp-samples/blob/main/spring-rabbit-confirms-returns/src/main/java/org/springframework/amqp/samples/confirms/SpringRabbitConfirmsReturnsApplication.java).
+Il suffit de lancer l'application. Ceci déclenche les opérations suivantes :
+1. le `Producer` envoie un message à RabbitMQ
+2. RabbitMQ soumet le message au `Consumer`
+3. le `Consumer` demande à l'utilisateur s'il veut que le message soit traité sans erreur (-> ack) ou
+au contraire qu'une exception soit lancée (-> nack).
