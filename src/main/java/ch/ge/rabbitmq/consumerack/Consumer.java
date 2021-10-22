@@ -20,9 +20,9 @@ public class Consumer {
 
     @RabbitListener(queues = QUEUE)
     public void receiveMessage(String message) {
-        log.info("Debut du traitement du message [{}]", message);
+        log.info("Debut de la consommation du message [{}]", message);
 
-        log.info("Tapez \"1\" pour traiter le message sans erreur. Tapez \"2\" pour lancer une exception");
+        log.info("Tapez \"1\" pour consommer le message sans erreur. Tapez \"2\" pour lancer une exception");
         String userChoice = new Scanner(System.in).nextLine();
         if (userChoice.equals("2")) {
             log.info("Lancement d'une exception");
@@ -30,7 +30,7 @@ public class Consumer {
             // Spring RabbitMQ va envoyer un nack a RabbitMQ et donc RabbitMQ va remettre le message dans la queue
             // et le resoumettre immediatement
         } else {
-            log.info("Fin du traitement du message (reussite)");
+            log.info("Fin de la consommation du message (reussite)");
             // Spring RabbitMQ va envoyer un ack a RabbitMQ
         }
 

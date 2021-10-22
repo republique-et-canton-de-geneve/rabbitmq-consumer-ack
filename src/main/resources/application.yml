@@ -7,4 +7,4 @@ spring:
 
 logging:
   pattern:
-    console: "%-5level : %msg%n"
+    console: "%d{HH:mm:ss.SSS} %-5level  %msg  [%logger{35}] %n"
